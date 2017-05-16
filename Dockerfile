@@ -12,4 +12,5 @@ RUN apk add --no-cache wget && \
 ENV SONAR_SCANNER_HOME=/sonar-scanner/sonar-scanner-$SONAR_SCANNER_VERSION
 ENV PATH $PATH:/sonar-scanner/sonar-scanner-$SONAR_SCANNER_VERSION/bin
 
+WORKDIR /app
 ENTRYPOINT [ "sonar-scanner" ]
