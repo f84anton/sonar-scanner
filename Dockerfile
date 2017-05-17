@@ -7,7 +7,8 @@ RUN apk add --no-cache wget && \
 	wget -q https://sonarsource.bintray.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-$SONAR_SCANNER_VERSION.zip -O /root/sonar-scanner.zip && \
 	unzip /root/sonar-scanner.zip -d /sonar-scanner/ && \
 	rm -f /sonar-scanner.zip && \
-	apk del wget
+	apk del wget && \
+	sed -i 's/use_embedded_jre=true/use_embedded_jre=false/g' /sonar-scanner/sonar-scanner-$SONAR_SCANNER_VERSION/bin/sonar-scanner
 
 ENV SONAR_SCANNER_HOME=/sonar-scanner/sonar-scanner-$SONAR_SCANNER_VERSION
 ENV PATH $PATH:/sonar-scanner/sonar-scanner-$SONAR_SCANNER_VERSION/bin
